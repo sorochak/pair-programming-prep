@@ -3,3 +3,7 @@
 const getStatusTypeMap = async () => {
   /* ... */
 };
+
+const getData = async () => {
+  /* ... */
+};
