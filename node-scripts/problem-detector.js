@@ -38,13 +38,14 @@ const getStatusTypeMap = async () => {
     if (response.ok) {
       const jsonResponse = await response.json();
 
-      // Build a lookup map: {50: 'Operational', 100: 'Not Operational', ...}
-      const statusMap = {};
-      jsonResponse.StatusTypes.forEach((status) => {
-        statusMap[status.ID] = status.Title;
-      });
+      console.log(jsonResponse.StatusTypes);
 
-      // console.log(statusMap);
+      // Build a lookup map: {50: 'Operational', 100: 'Not Operational', ...}
+      const statusMap = jsonResponse.StatusTypes.reduce((acc, status) => {
+        return { ...acc, [status.ID]: status.Title };
+      }, {});
+
+      console.log(statusMap);
       return statusMap;
     } else {
       // Handles response if unsuccessful
@@ -144,15 +145,15 @@ const main = async () => {
     });
 
     // Only include sites with at least one problem
-    Object.entries(summary).forEach(([site, stats]) => {
-      if (stats.needsAttentionCount > 0) {
-        console.log(`site: ${site}`);
-        console.log(`  Total Connections: ${stats.totalConnections}`);
-        console.log(`  Needs Attention: ${stats.needsAttentionCount}`);
-        console.log(`  Total Power (kW): ${stats.totalPowerKW}`);
-        console.log();
-      }
-    });
+    // Object.entries(summary).forEach(([site, stats]) => {
+    //   if (stats.needsAttentionCount > 0) {
+    //     console.log(`site: ${site}`);
+    //     console.log(`  Total Connections: ${stats.totalConnections}`);
+    //     console.log(`  Needs Attention: ${stats.needsAttentionCount}`);
+    //     console.log(`  Total Power (kW): ${stats.totalPowerKW}`);
+    //     console.log();
+    //   }
+    // });
   };
 
   summarizeBySite(normalized);
