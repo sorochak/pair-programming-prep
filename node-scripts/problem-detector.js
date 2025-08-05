@@ -39,10 +39,9 @@ const getStatusTypeMap = async () => {
       const jsonResponse = await response.json();
 
       // Build a lookup map: {50: 'Operational', 100: 'Not Operational', ...}
-      const statusMap = {};
-      jsonResponse.StatusTypes.forEach((status) => {
-        statusMap[status.ID] = status.Title;
-      });
+      const statusMap = jsonResponse.StatusTypes.reduce((acc, status) => {
+        return { ...acc, [status.ID]: status.Title };
+      }, {});
 
       // console.log(statusMap);
       return statusMap;
