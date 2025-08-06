@@ -12,9 +12,7 @@ const PORT = 3000;
 
 // Enable CORS for all origins
 app.use(cors());
-app.use(
-  morgan(":method :url :status :res[content-length] - :response-time ms")
-);
+app.use(morgan("dev"));
 
 app.get("/api/chargers", async (req, res) => {
   try {
