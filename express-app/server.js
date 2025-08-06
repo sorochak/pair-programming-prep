@@ -1,6 +1,7 @@
 // express-app/index.js
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan");
 require("dotenv").config();
 const { fetchAndMergeData } = require("./services/fetchChargers");
 const { normalizeChargers } = require("./services/normalize");
@@ -11,6 +12,9 @@ const PORT = 3000;
 
 // Enable CORS for all origins
 app.use(cors());
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms")
+);
 
 app.get("/api/chargers", async (req, res) => {
   try {
