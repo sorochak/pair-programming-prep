@@ -77,3 +77,16 @@ const getData = async () => {
   }
 };
 ```
+
+## groupBy function:
+
+```js
+const groupBy = (arr, keyFn) => {
+  return arr.reduce((acc, item) => {
+    const key = keyFn(item);
+    acc[key] = acc[key] ?? [];
+    acc[key].push(item);
+    return acc;
+  }, {});
+};
+```
