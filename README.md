@@ -8,7 +8,7 @@ npm run dev
 ## Express App
 
 cd express-app
-node index.js
+node service.js
 
 ## Node Scripts
 
