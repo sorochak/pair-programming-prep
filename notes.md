@@ -91,6 +91,32 @@ const groupBy = (arr, keyFn) => {
 };
 ```
 
+# Starter Script:
+
+```js
+// script.js
+
+async function fetchData() {
+  const res = await fetch("https://api.example.com/data");
+  if (!res.ok) {
+    throw new Error(`HTTP error! Status: ${res.status}`);
+  }
+  const data = await res.json();
+  return data;
+}
+
+async function main() {
+  try {
+    const data = await fetchData();
+    console.log(data);
+  } catch (err) {
+    console.error("Error:", err.message);
+  }
+}
+
+main(); // <--- kick off your script
+```
+
 # Testing Utilities with Jest
 
 ## Install Jest

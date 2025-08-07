@@ -22,6 +22,7 @@ const fetchData = async () => {
           year: new Date(launch.date_utc).getFullYear(),
         };
       });
+      return normalized;
     } else {
       throw new Error(`Error: ${res.status}`);
     }
@@ -32,6 +33,7 @@ const fetchData = async () => {
 
 const main = async () => {
   const data = await fetchData();
+  console.log(data);
   return data;
 };
 
